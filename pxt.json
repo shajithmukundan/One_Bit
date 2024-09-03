@@ -1,5 +1,5 @@
 {
-    "name": "Untitled",
+    "name": "Onebit blocks",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -8,7 +8,8 @@
         "sloth": "github:shajithmukundan/pxt-slomo#b1216624bea7f836976bd3288a0e46d4d2a11a87",
         "pxt-plenbit_full": "github:plenprojectcompany/pxt-plenbit_full#v0.0.1",
         "pxt-plenbit": "github:plenprojectcompany/pxt-plenbit#v1.0.17",
-        "neopixel": "github:microsoft/pxt-neopixel#v0.7.6"
+        "neopixel": "github:microsoft/pxt-neopixel#v0.7.6",
+        "Untitled": "github:shajithmukundan/one_bit#14df65666d010431d240bdcf6fd157d1dca5e821"
     },
     "files": [
         "main.blocks",
