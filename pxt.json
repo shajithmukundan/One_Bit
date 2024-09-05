@@ -11,7 +11,6 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "custom.ts",
         "Onebit.ts"
     ],
     "testFiles": [
@@ -24,5 +23,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
