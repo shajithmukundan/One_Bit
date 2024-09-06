@@ -58,7 +58,7 @@ namespace One_Bit {
      * @param color the color to set
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#eaff00' group=Colors weight=150
     //% blockId="one_bit_rainbow_set_color"
     //% block="set Rainbow color to %color"
     //% weight=90 blockGap=8
@@ -75,7 +75,7 @@ namespace One_Bit {
      * @param color the color to set
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#42b87f' group=Colors weight=150
     //% blockId="one_bit_rainbow_set_led_color"
     //% block="set Rainbow LED %ledIndex|color to %color"
     //% weight=80 blockGap=8
@@ -119,7 +119,7 @@ namespace One_Bit {
      * Rotate the colors on the strip
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#ffdc00' group=Effects weight=150
     //% blockId="one_bit_rainbow_rotate"
     //% block="Rotate Rainbow "
     //% weight=50 blockGap=8
@@ -135,7 +135,7 @@ namespace One_Bit {
      * @param brightness brightness level (0-255)
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#8eff00' group=Colors weight=150
     //% blockId="one_bit_rainbow_set_brightness"
     //% block="set Rainbow brightness to %brightness"
     //% weight=30 blockGap=8
@@ -151,7 +151,7 @@ namespace One_Bit {
      * @param color the color to breathe
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#ff00e3' group=Effects weight=150
     //% blockId="one_bit_rainbow_breathing"
     //% block="breathing effect with %color"
     //% weight=20 blockGap=8
@@ -176,7 +176,7 @@ namespace One_Bit {
      * @param color the color to wipe
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#f1d07e' group=Effects weight=150
     //% blockId="one_bit_rainbow_color_wipe"
     //% block="Rainbow color wipe with %color"
     //% weight=15 blockGap=8
@@ -196,7 +196,7 @@ namespace One_Bit {
      * @param color the color to chase
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#f3f2da' group=Effects weight=150
     //% blockId="one_bit_rainbow_theater_chase"
     //% block="theater chase with %color"
     //% weight=10 blockGap=8
@@ -226,7 +226,7 @@ namespace One_Bit {
      * @param toColor ending color of the gradient
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#727474' group=Colors weight=150
     //% blockId="one_bit_rainbow_gradient"
     //% block="show gradient with start hue %startHue|length %length|from %fromColor|to %toColor"
     //% weight=60 blockGap=8
@@ -268,7 +268,7 @@ namespace One_Bit {
      * @param color the color to fade
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#00a3ff' group=Effects weight=150
     //% blockId="one_bit_rainbow_fade"
     //% block="fade in and out with %color"
     //% weight=10 blockGap=8
@@ -293,7 +293,7 @@ namespace One_Bit {
      * @param color the color to twinkle
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#acb3f3' group=Effects weight=150
     //% blockId="one_bit_rainbow_twinkle_stars"
     //% block="twinkle stars effect with %color"
     //% weight=4 blockGap=8
@@ -316,7 +316,7 @@ namespace One_Bit {
      * @param color the color of the comet tail
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#C3C6D8' group=Effects weight=150
     //% blockId="one_bit_rainbow_comet_tail"
     //% block="comet tail effect with %color continuously"
     //% weight=3 blockGap=8
@@ -348,7 +348,7 @@ namespace One_Bit {
      * @param color2 the second color for the running lights
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#00dcff' group=Effects weight=150
     //% blockId="one_bit_rainbow_running_lights"
     //% block="running lights effect with %color1 and %color2"
     //% weight=2 blockGap=8
@@ -370,7 +370,7 @@ namespace One_Bit {
      * Rainbow cycle effect on the strip
      */
     //% subcategory="Rainbow"
-    //% value.defl='#ff0000' group=Effects weight=150
+    //% value.defl='#fdd3f8' group=Effects weight=150
     //% blockId="one_bit_rainbow_cycle"
     //% block="Rainbow cycle effect"
     //% weight=1 blockGap=8
@@ -393,7 +393,7 @@ namespace One_Bit {
      * @param b Blue value (0-255)
      */
     //% blockId="one_bit_rgb_to_color"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#e0acfe' group=Colors weight=150
     //% block="R %r|G %g|B %b"
     //% r.min=0 r.max=255
     //% g.min=0 g.max=255
@@ -410,7 +410,7 @@ namespace One_Bit {
      * @param l Luminosity (0-100)
      */
     //% blockId="one_bit_hsl_to_color"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#8eff00' group=Colors weight=150
     //% block="hue %h|saturation %s|luminosity %l"
     //% h.min=0 h.max=360
     //% s.min=0 s.max=100
@@ -424,7 +424,7 @@ namespace One_Bit {
      * Get a random color
      */
     //% blockId="one_bit_random_color"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#acb3f3' group=Colors weight=150
     //% block="random color"
     //% subcategory="Rainbow"
     export function randomColor(): number {
@@ -436,7 +436,7 @@ namespace One_Bit {
      * @param pattern the pattern to apply
      */
     //% blockId="one_bit_pattern"
-    //% value.defl='#ff0000' group=Colors weight=150
+    //% value.defl='#f3f2da' group=Colors weight=150
     //% block="patterns %pattern"
     //% subcategory="Rainbow"
     export function applyPattern(pattern: number): void {
