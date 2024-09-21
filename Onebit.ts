@@ -34,7 +34,7 @@ namespace One_Bit {
     //% block="initialize Rainbow with %numLeds|LEDs"
     //% weight=100 blockGap=8
     export function initializeNeoPixel(numLeds: number): void {
-        neoStrip = neopixel.create(DigitalPin.P16, numLeds, NeoPixelMode.RGB);
+        neoStrip = neopixel.create(DigitalPin.P2, numLeds, NeoPixelMode.RGB);
     }
 
 
