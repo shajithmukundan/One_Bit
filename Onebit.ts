@@ -1,9 +1,31 @@
 /**
  * Custom blocks for One:Bit
  */
-//%  weight=100 color=#E3D114 icon="\uf1ba" block="One:Bit"
 
+//%  weight=100 color=#FFC300 block="One:Bit" icon="\uf121"
 namespace One_Bit {
+
+
+    // Convert any AnalogPinPrime to AnalogPin
+    function getAnalogPin(pin: AnalogPinPrime | ServoPin): AnalogPin {
+        switch (pin) {
+            case AnalogPinPrime.P0: return AnalogPin.P0;
+            case AnalogPinPrime.P1: return AnalogPin.P1;
+            case AnalogPinPrime.P2: return AnalogPin.P2;
+            case AnalogPinPrime.P3: return AnalogPin.P3;
+            case AnalogPinPrime.P4: return AnalogPin.P4;
+            case AnalogPinPrime.P5: return AnalogPin.P5;
+            case ServoPin.P0: return AnalogPin.P0;
+            case ServoPin.P3: return AnalogPin.P3;
+            case ServoPin.P4: return AnalogPin.P4;
+            case ServoPin.P5: return AnalogPin.P5;
+            case ServoPin.P6: return AnalogPin.P6;
+            case ServoPin.P7: return AnalogPin.P7;
+            case ServoPin.P10: return AnalogPin.P10;
+            case ServoPin.P11: return AnalogPin.P11;
+            default: return AnalogPin.P0; // Fallback
+        }
+    }
 
     ////////////////////
     //  PRIME  //
@@ -11,6 +33,253 @@ namespace One_Bit {
 
     let primeStrip: neopixel.Strip = null;
 
+    // Define pins for Digital and Analog operations
+    export enum DigitalPinPrime {
+        //% block="P9"
+        P9,
+        //% block="P13"
+        P13,
+        //% block="P14"
+        P14,
+        //% block="P15"
+        P15,
+        //% block="P19"
+        P19,
+        //% block="P20"
+        P20
+    }
+
+    export enum AnalogPinPrime {
+        //% block="P0"
+        P0,
+        //% block="P1"
+        P1,
+        //% block="P2"
+        P2,
+        //% block="P3"
+        P3,
+        //% block="P4"
+        P4,
+        //% block="P5"
+        P5
+    }
+
+    // Convert DigitalPinPrime to DigitalPin
+    function getDigitalPin(pin: DigitalPinPrime): DigitalPin {
+        switch (pin) {
+            case DigitalPinPrime.P9: return DigitalPin.P9;
+            case DigitalPinPrime.P13: return DigitalPin.P13;
+            case DigitalPinPrime.P14: return DigitalPin.P14;
+            case DigitalPinPrime.P15: return DigitalPin.P15;
+            case DigitalPinPrime.P19: return DigitalPin.P19;
+            case DigitalPinPrime.P20: return DigitalPin.P20;
+            default: return DigitalPin.P0; // Fallback
+        }
+    }
+
+
+
+    // Define servo pins for Prime
+    export enum PrimeServoPin {
+        //% block="P0"
+        P0,
+        //% block="P1"
+        P1,
+        //% block="P2"
+        P2,
+        //% block="P3"
+        P3,
+        //% block="P4"
+        P4,
+        //% block="P9"
+        P9,
+        //% block="P10"
+        P10,
+        //% block="P13"
+        P13,
+        //% block="P14"
+        P14,
+        //% block="P15"
+        P15,
+        //% block="P19"
+        P19,
+        //% block="P20"
+        P20
+    }
+
+    // Define servo positions enumeration
+    export enum PrimeServoPosition {
+        //% block="0 degrees"
+        Zero,
+        //% block="45 degrees"
+        FortyFive,
+        //% block="90 degrees"
+        Ninety,
+        //% block="135 degrees"
+        OneThirtyFive,
+        //% block="180 degrees"
+        OneEighty
+    }
+
+    // Convert PrimeServoPin to AnalogPin
+    function getPrimeAnalogPin(pin: PrimeServoPin): AnalogPin {
+        switch (pin) {
+            case PrimeServoPin.P0: return AnalogPin.P0;
+            case PrimeServoPin.P1: return AnalogPin.P1;
+            case PrimeServoPin.P2: return AnalogPin.P2;
+            case PrimeServoPin.P3: return AnalogPin.P3;
+            case PrimeServoPin.P4: return AnalogPin.P4;
+            case PrimeServoPin.P10: return AnalogPin.P10;
+            case PrimeServoPin.P9: return AnalogPin.P9;
+            case PrimeServoPin.P13: return AnalogPin.P13;
+            case PrimeServoPin.P14: return AnalogPin.P14;
+            case PrimeServoPin.P15: return AnalogPin.P15;
+            case PrimeServoPin.P19: return AnalogPin.P19;
+            case PrimeServoPin.P20: return AnalogPin.P20;
+            default: return AnalogPin.P0; // Fallback
+        }
+    }
+
+
+    /**
+     * Write a digital value to a pin.
+     * @param pin which pin to control
+     * @param value the value to write (0 or 1)
+     */
+    //% subcategory="Prime"
+    //% group="Digital Pins"
+    //% blockId="digital_write"
+    //% block="Digital write pin %pin |to %value"
+    export function digitalWrite(pin: DigitalPinPrime, value: number): void {
+        pins.digitalWritePin(getDigitalPin(pin), value);
+    }
+
+    /**
+     * Read a digital value from a pin.
+     * @param pin which pin to read from
+     * @returns the value read (0 or 1)
+     */
+    //% subcategory="Prime"
+    //% group="Digital Pins"
+    //% blockId="digital_read"
+    //% block="Read digital pin %pin"
+    export function digitalRead(pin: DigitalPinPrime): number {
+        return pins.digitalReadPin(getDigitalPin(pin));
+    }
+
+    /**
+     * Read an analog value from a pin.
+     * @param pin which pin to read from
+     * @returns the analog value (0 to 1023)
+     */
+    //% subcategory="Prime"
+    //% group="Analog Pins"
+    //% blockId="analog_read"
+    //% block="Read analog pin %pin"
+    export function analogRead(pin: AnalogPinPrime): number {
+        return pins.analogReadPin(getAnalogPin(pin));
+    }
+
+    /**
+     * Write an analog value to a pin.
+     * @param pin which pin to control
+     * @param value the value to write (0 to 1023)
+     */
+    //% subcategory="Prime"
+    //% group="Analog Pins"
+    //% blockId="analog_write"
+    //% block="Analog write pin %pin|to %value "
+    //% value.min=0 value.max=1023
+    export function analogWrite(pin: AnalogPinPrime, value: number): void {
+        pins.analogWritePin(getAnalogPin(pin), value);
+    }
+
+
+    /**
+     * Move a Prime servo to a specified position.
+     * @param pin which pin to control
+     * @param position the position to move to
+     */
+    //% subcategory="Prime"
+    //% group="Positional Servo"
+    //% blockId="move_prime_servo"
+    //% block="Move Prime servo on pin %pin|to position %position"
+    export function movePrimeServo(pin: PrimeServoPin, position: PrimeServoPosition): void {
+        const angle = position === PrimeServoPosition.Zero ? 0 :
+            position === PrimeServoPosition.FortyFive ? 45 :
+                position === PrimeServoPosition.Ninety ? 90 :
+                    position === PrimeServoPosition.OneThirtyFive ? 135 : 180;
+
+        pins.servoWritePin(getPrimeAnalogPin(pin), angle);
+    }
+
+    /**
+     * Move servo on the specified pin from one angle to another.
+     * @param pin the pin connected to the servo
+     * @param fromAngle the starting angle
+     * @param toAngle the ending angle
+     */
+    //% subcategory="Prime"
+    //% group="Positional Servo"
+    //% blockId="move_servo_from_to"
+    //% block="Move Prime servo on pin %pin|from angle %fromAngle degrees to %toAngle degrees"
+    //% fromAngle.min=0 fromAngle.max=180
+    //% toAngle.min=0 toAngle.max=180
+    export function movePrimeServoFromTo(pin: ServoPin, fromAngle: number, toAngle: number): void {
+        let step = fromAngle < toAngle ? 1 : -1;
+        for (let angle = fromAngle; angle !== toAngle; angle += step) {
+            pins.servoWritePin(getAnalogPin(pin), angle);
+            basic.pause(20);
+        }
+        pins.servoWritePin(getAnalogPin(pin), toAngle); // Ensure final position
+    }
+
+    /**
+     * Moves a servo on the given pin from one angle to another over a specified duration.
+     * @param pin which pin to control
+     * @param from starting angle
+     * @param to ending angle
+     * @param duration duration to complete the movement
+     */
+    //% subcategory="Prime"
+    //% group="Positional Servo"
+    //% blockId="move_servo_from_to_duration"
+    //% block="Move Prime servo on pin %pin|from angle %from|to angle %to|over %duration seconds"
+    //% from.min=0 from.max=180
+    //% to.min=0 to.max=180
+    //% duration.min=1 duration.max=10
+    export function movePrimeServoFromTo1(pin: ServoPin, from: number, to: number, duration: number): void {
+        const startAngle = Math.clamp(0, 180, from);
+        const endAngle = Math.clamp(0, 180, to);
+        const steps = Math.abs(endAngle - startAngle);
+        const stepDuration = duration * 1000 / steps;
+
+        for (let i = 0; i <= steps; i++) {
+            const currentAngle = startAngle + (endAngle > startAngle ? i : -i);
+            pins.servoWritePin(getAnalogPin(pin), currentAngle);
+            basic.pause(stepDuration);
+        }
+    }
+
+    /**
+     * Control continuous Prime servo at specified speed and direction
+     * @param pin which pin to control
+     * @param direction the direction to turn
+     * @param speed how fast to spin (0 to 255)
+     */
+    //% subcategory="Prime"
+    //% group="Continuous Servo"
+    //% blockId="control_continuous_prime_servo"
+    //% block="Continuous Prime servo on |pin %pin|in direction %direction|at speed %speed"
+    //% speed.min=0 speed.max=255
+    export function controlContinuousPrimeServo(pin: PrimeServoPin, direction: ContinuousServoDirection, speed: number): void {
+        const outputVal = Math.clamp(0, 255, speed);
+        if (direction === ContinuousServoDirection.Clockwise) {
+            pins.analogWritePin(getPrimeAnalogPin(pin), outputVal);
+        } else {
+            pins.analogWritePin(getPrimeAnalogPin(pin), 0);
+        }
+    }
 
     /**
          * Initialize the Prime
@@ -19,8 +288,8 @@ namespace One_Bit {
     //% subcategory="Prime"
     //% blockId="one_bit_prime_initialize"
     //% block="initialize Prime with %numLeds|LEDs"
-    //% weight=100 blockGap=8
-    //% color=#FF5733 icon="\uf185" // Custom color and icon for Prime
+    //% group=Colors 
+    //% weight=150 blockGap=10
     //% blockNamespace="One_Bit"
     export function initializePrime(numLeds: number): void {
         primeStrip = neopixel.create(DigitalPin.P16, numLeds, NeoPixelMode.RGB);
@@ -30,10 +299,10 @@ namespace One_Bit {
      * Show rainbow colors on the strip
      */
     //% subcategory="Prime"
+    //% group=Colors weight=150
     //% blockId="one_bit_prime_show_rainbow"
     //% block="show Prime"
     //% weight=70 blockGap=8
-    //% color=#FF5733 // Custom color for show Prime block
     export function showPrime(): void {
         if (primeStrip) {
             primeStrip.showRainbow(1, 360);
@@ -45,10 +314,10 @@ namespace One_Bit {
      * Clear all LEDs on the strip
      */
     //% subcategory="Prime"
+    //% group=Colors weight=150
     //% blockId="one_bit_prime_clear"
     //% block="clear Prime "
     //% weight=60 blockGap=8
-    //% color=#FF5733 // Custom color for show Prime block
     export function clearPrime(): void {
         if (primeStrip) {
             primeStrip.clear();
@@ -61,10 +330,10 @@ namespace One_Bit {
      * @param brightness brightness level (0-255)
      */
     //% subcategory="Prime"
+    //% group=Colors weight=150
     //% blockId="one_bit_prime_set_brightness"
     //% block="set Prime brightness to %brightness"
     //% weight=30 blockGap=8
-    //% color=#FF5733 // Custom color for show Prime block
     export function setPrimeBrightness(brightness: number): void {
         if (primeStrip) {
             primeStrip.setBrightness(brightness);
@@ -77,10 +346,10 @@ namespace One_Bit {
      * Custom color picker
      */
     //% subcategory="Prime"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% blockId=brightColorNumberPicker block="%value"
-    //% shim=TD_ID colorSecondary="#FFFFFF"
+    //% shim=TD_ID colorSecondary="#ffffff"
     //% value.fieldEditor="colornumber" value.fieldOptions.decompileLiterals=true
     //% value.fieldOptions.colours='["#ffffff","#ff0000","#ff4500","#ffa500","#ffd700","#ffff00","#eaff00","#8eff00","#4df243","#42b87f","#00ffdc","#00dcff","#00a3ff","#0087ff","#0000ff","#4682b4","#6a5acd","#a300ff","#ea00ff","#ff00e3","#c71585","#ff69b4","#000000","#727474"]'
     //% value.fieldOptions.columns=5 value.fieldOptions.className='rgbColorPicker'
@@ -89,29 +358,12 @@ namespace One_Bit {
         return value;
     }
 
-
-    /**
-     * Rotate the colors on the strip
-     */
-    //% subcategory="Prime"
-    //% group=Colors weight=150
-    //% blockId="one_bit_prime_rotate"
-    //% block="Rotate Prime "
-    //% weight=50 blockGap=8
-    export function rotatePrime(): void {
-        if (primeStrip) {
-            primeStrip.rotate(1);
-            primeStrip.show();
-        }
-    }
-
-
     /**
      * Set color of all LEDs on the strip
      * @param color the color to set
      */
     //% subcategory="Prime"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% blockId="one_bit_prime_set_color"
     //% block="set Prime color to %color"
@@ -129,7 +381,7 @@ namespace One_Bit {
      * @param color the color to set
      */
     //% subcategory="Prime"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% blockId="one_bit_prime_set_led_color"
     //% block="set Prime LED %ledIndex|color to %color"
@@ -150,7 +402,7 @@ namespace One_Bit {
      * @param toColor ending color of the gradient
      */
     //% subcategory="Prime"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% blockId="one_bit_prime_gradient"
     //% block="show gradient with start hue %startHue|length %length|from %fromColor|to %toColor"
@@ -196,7 +448,7 @@ namespace One_Bit {
      * @param b Blue value (0-255)
      */
     //% blockId="one_bit_prime_rgb_to_color"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% block="R %r|G %g|B %b"
     //% r.min=0 r.max=255
@@ -214,7 +466,7 @@ namespace One_Bit {
      * @param l Luminosity (0-100)
      */
     //% blockId="one_bit_prime_hsl_to_color"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% block="hue %h|saturation %s|luminosity %l"
     //% h.min=0 h.max=360
@@ -229,7 +481,7 @@ namespace One_Bit {
      * Get a random color
      */
     //% blockId="one_bit_prime_random_color"
-    //% value.defl='#ff0000' 
+    //% value.defl='#ffffff'
     //% group=Colors weight=150
     //% block="random color"
     //% subcategory="Prime"
@@ -251,7 +503,6 @@ namespace One_Bit {
     //% blockId="one_bit_rainbow_initialize"
     //% block="initialize Rainbow with %numLeds|LEDs"
     //% weight=100 blockGap=8
-    //% color=#1E90FF icon="\uf308" // Custom color and icon for Rainbow
     export function initializeRainbow(numLeds: number): void {
         rainbowStrip = neopixel.create(DigitalPin.P2, numLeds, NeoPixelMode.RGB);
     }
@@ -316,23 +567,6 @@ namespace One_Bit {
             rainbowStrip.showColor(color);
         }
     }
-
-
-    /**
-     * Rotate the colors on the rainbow strip
-     */
-    //% subcategory="Rainbow"
-    //% group=Colors weight=150
-    //% blockId="one_bit_rainbow_rotate"
-    //% block="Rotate Rainbow"
-    //% weight=50 blockGap=8
-    export function rotateRainbow(): void {
-        if (rainbowStrip) {
-            rainbowStrip.rotate(1);
-            rainbowStrip.show();
-        }
-    }
-
 
     /**
      * Set color of a specific LED on the rainbow strip
@@ -761,21 +995,6 @@ namespace One_Bit {
         }
     }
 
-    // Convert ServoPin to AnalogPin
-    function getAnalogPin(pin: ServoPin): AnalogPin {
-        switch (pin) {
-            case ServoPin.P0: return AnalogPin.P0;
-            case ServoPin.P3: return AnalogPin.P3;
-            case ServoPin.P4: return AnalogPin.P4;
-            case ServoPin.P5: return AnalogPin.P5;
-            case ServoPin.P6: return AnalogPin.P6;
-            case ServoPin.P7: return AnalogPin.P7;
-            case ServoPin.P10: return AnalogPin.P10;
-            case ServoPin.P11: return AnalogPin.P11;
-            default: return AnalogPin.P0; // Fallback
-        }
-    }
-
     function setMotorSpeed(motor: Motors, speed: number, direction: MotorDirection): void {
         let outputVal = Math.clamp(0, 255, speed) * 4; // Map to 0-1023 range
 
@@ -1109,4 +1328,6 @@ namespace One_Bit {
         stepper28BYJ48Turns(motor1Select, dir1, turns1, speed);
         stepper28BYJ48Turns(motor2Select, dir2, turns2, speed);
     }
+
+
 }
